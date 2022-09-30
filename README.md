@@ -1,1 +1,1 @@
-# DSA in C++ Notes
+# Data Structures and Algrithms in C
