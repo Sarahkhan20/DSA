@@ -1,56 +1,59 @@
 #include <stdio.h>
-#define size 5
-struct queue{
+#include <stdlib.h>
+#define SIZE 3
+
+struct queue
+{
+    int items[SIZE];
     int front,rear;
-    int arr[size];
-}q1;
-
+}s;
 void enqueue(int x){
-  if(q1.rear==size-1 
-  && q1.front==-1){
-      printf("\n NAHI JAGAH HAI\n");
-  }
-  q1.rear++;
-q1.arr[q1.rear]=x;
-
-
-}
-int dequeue(){
-     int s;
-     if(q1.rear==q1.front){
-        printf("BOHOT JAGAH HAI");
-    } 
-   s= q1.arr[q1.front];
-   q1.front++;
- printf("value popped out is :%d \n", s);
-}
-void peek(){
-      if(q1.rear==q1.front){
-        printf("BOHOT JAGAH HAI\n");
+    if(s.rear==SIZE-1){
+        printf("queue is full\n");
+       
     }
-    int s=q1.arr[q1.rear];
-    printf("value at the top is : %d\n",s);
+
+    s.rear++;
+    s.items[s.rear]=x;
+
 }
+
+void dequeue(){
+    if(s.rear==s.front){
+        printf("Queue empty\n");
+   
+    }
+    int a=s.items[s.front+1];
+    printf("Removed element is :%d\n",a);
+
+    for(int i = s.front+1; i < s.rear ; i++) {
+            s.items[i] = s.items[i+1];
+        }
+    s.rear--;
+}
+
 void display(){
-      if(q1.rear==q1.front){
-        printf("BOHOT JAGAH HAI");
+    if(s.rear==s.front){
+        printf("queue empty\n");
+        return;
     }
-    for(int i=q1.rear;i>=0;i--)
-    {
-        printf("%d\n",q1.arr[i]);
+    printf("Queue is :\n");
+    for(int i=s.front+1;i<=s.rear;i++){
+        printf("Elements no %d is :%d\n",i,s.items[i]);
     }
 }
-int main(){
- q1.rear=-1;
- q1.front=-1;
+
+int main()
+{
+    s.front=-1;
+    s.rear=-1;
         enqueue(2);
-  enqueue(4);
-    enqueue(6);
+         enqueue(4);
+          enqueue(6);
         dequeue();
-  
+         enqueue(8);
+         dequeue();
+          enqueue(10);
         display();
-  
-        peek();
-    
     return 0;
 }
